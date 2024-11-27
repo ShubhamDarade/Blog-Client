@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./style.css"; // Import the CSS for styling
+import "./style.css"; 
 import { Loading } from "../../components";
 import { allBlogs } from "../../api";
 import { useNavigate } from "react-router-dom";
-// Sample Data for Blogs and their Authors
 
 const AllBlogs = () => {
   const navigate = useNavigate();
@@ -34,7 +33,7 @@ const AllBlogs = () => {
 
   return (
     <div className="allBlgPg-page-container">
-      {/* <h1>All Blogs</h1> */}
+     
       <div className="allBlgPg-blogs-list">
         {blogs.map((blog) => (
           <div key={blog._id} className="allBlgPg-blog-card">
