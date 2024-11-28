@@ -53,14 +53,14 @@ const Header = () => {
 
           {islogin && (
             <>
-              <div className="hdr-user-profile">
+              {/* <div className="hdr-user-profile">
                 <img
                   src="https://i.pinimg.com/736x/cb/8d/11/cb8d11fed1e3924611c7022cf89ffdfc.jpg"
                   alt="User Avatar"
                   className="hdr-user-avatar"
                 />
                 <span className="hdr-username">John Doe</span>
-              </div>
+              </div> */}
 
               <button className="hdr-logout-btn" onClick={handleLogout}>
                 Logout
