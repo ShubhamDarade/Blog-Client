@@ -22,6 +22,8 @@ API.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem("token");
+      localStorage.removeItem("userName");
+      localStorage.removeItem("userAvatar");
 
       store.dispatch(logout());
       window.location.href = "/login";

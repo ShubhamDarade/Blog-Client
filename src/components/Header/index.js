@@ -10,6 +10,8 @@ const Header = () => {
 
   let islogin = useSelector((state) => state.auth.value);
   islogin = islogin || localStorage.getItem("token");
+  let userName = localStorage.getItem("userName");
+  let userAvatar = localStorage.getItem("userAvatar");
 
   const handleLogout = () => {
     try {
@@ -53,14 +55,14 @@ const Header = () => {
 
           {islogin && (
             <>
-              {/* <div className="hdr-user-profile">
+              <div className="hdr-user-profile">
                 <img
-                  src="https://i.pinimg.com/736x/cb/8d/11/cb8d11fed1e3924611c7022cf89ffdfc.jpg"
-                  alt="User Avatar"
+                  src={userAvatar}
+                  alt={userName}
                   className="hdr-user-avatar"
                 />
-                <span className="hdr-username">John Doe</span>
-              </div> */}
+                <span className="hdr-username">{userName}</span>
+              </div>
 
               <button className="hdr-logout-btn" onClick={handleLogout}>
                 Logout

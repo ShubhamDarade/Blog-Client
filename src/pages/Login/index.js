@@ -26,6 +26,8 @@ const Login = () => {
 
       if (res.data?.success) {
         localStorage.setItem("token", res.data?.token);
+        localStorage.setItem("userName", res.data?.userName);
+        localStorage.setItem("userAvatar", res.data?.userAvatar);
         dispatch(login());
         toast.success("Login successful!");
         navigate("/"); // Redirect to dashboard or home page
