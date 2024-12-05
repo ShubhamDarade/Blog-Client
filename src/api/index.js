@@ -9,7 +9,7 @@ const API = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL });
 
 // Set Authorization header for every request
 API.interceptors.request.use((config) => {
-  const token = localStorage.getItem("token"); // Get token from local storage
+  const token = localStorage.getItem("BlogVerse-token"); // Get token from local storage
   if (token) {
     config.headers.Authorization = `Bearer ${token}`; // Add token to headers
   }
@@ -21,9 +21,9 @@ API.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("userName");
-      localStorage.removeItem("userAvatar");
+      localStorage.removeItem("BlogVerse-token");
+      localStorage.removeItem("BlogVerse-userName");
+      localStorage.removeItem("BlogVerse-userAvatar");
 
       store.dispatch(logout());
       window.location.href = "/login";

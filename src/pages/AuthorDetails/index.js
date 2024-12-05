@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./style.css"; // Import the CSS for styling
-import { Loading } from "../../components";
+import { Loading, Message } from "../../components";
 import { author } from "../../api";
 
 const AuthorDetails = () => {
@@ -56,32 +56,37 @@ const AuthorDetails = () => {
       </div>
 
       {/* <h1>All Blogs</h1> */}
-      <div className="allBlgPg-blogs-list">
-        {blogs.map((blog) => (
-          <div
-            key={blog._id}
-            className="allBlgPg-blog-card"
-            onClick={() => navigate(`/blog-details/${blog._id}`)}
-          >
-            <img
-              src={blog.image}
-              alt={blog.title}
-              className="allBlgPg-blog-image"
-            />
-            <div className="allBlgPg-blog-info">
+
+      {length ? (
+        <div className="allBlgPg-blogs-list">
+          {blogs.map((blog) => (
+            <div
+              key={blog._id}
+              className="allBlgPg-blog-card"
+              onClick={() => navigate(`/blog-details/${blog._id}`)}
+            >
               <img
-                src={authorAvatar}
-                alt={authorName}
-                className="allBlgPg-author-avatar"
+                src={blog.image}
+                alt={blog.title}
+                className="allBlgPg-blog-image"
               />
-              <div className="allBlgPg-blog-text">
-                <h3 className="allBlgPg-blog-title">{blog.title}</h3>
-                <p className="allBlgPg-author-name">By {authorName}</p>
+              <div className="allBlgPg-blog-info">
+                <img
+                  src={authorAvatar}
+                  alt={authorName}
+                  className="allBlgPg-author-avatar"
+                />
+                <div className="allBlgPg-blog-text">
+                  <h3 className="allBlgPg-blog-title">{blog.title}</h3>
+                  <p className="allBlgPg-author-name">By {authorName}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <Message message="Author hasn't created any blog yet." />
+      )}
     </div>
   );
 };
