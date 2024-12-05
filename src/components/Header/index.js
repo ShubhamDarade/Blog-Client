@@ -9,14 +9,16 @@ const Header = () => {
   const dispatch = useDispatch();
 
   let islogin = useSelector((state) => state.auth.value);
-  islogin = islogin || localStorage.getItem("token");
-  let userName = localStorage.getItem("userName");
-  let userAvatar = localStorage.getItem("userAvatar");
+  islogin = islogin || localStorage.getItem("BlogVerse-token");
+  let userName = localStorage.getItem("BlogVerse-userName");
+  let userAvatar = localStorage.getItem("BlogVerse-userAvatar");
 
   const handleLogout = () => {
     try {
       dispatch(logout());
-      localStorage.removeItem("token");
+      localStorage.removeItem("BlogVerse-token");
+      localStorage.removeItem("BlogVerse-userName");
+      localStorage.removeItem("BlogVerse-userAvatar");
       navigate("/login");
     } catch (err) {
       console.log(err);

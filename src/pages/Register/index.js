@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import toast from "react-hot-toast";
 import "./style.css"; // CSS for styling
 import { register } from "../../api"; // API function for registration
@@ -9,6 +9,7 @@ import { login } from "../../slices/authSlice";
 const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const fileInputRef = useRef(null);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -33,9 +34,9 @@ const Register = () => {
       const res = await register(formData); // Call API
 
       if (res.data?.success) {
-        localStorage.setItem("token", res.data?.token);
-        localStorage.setItem("userName", res.data?.userName);
-        localStorage.setItem("userAvatar", res.data?.userAvatar);
+        localStorage.setItem("BlogVerse-token", res.data?.token);
+        localStorage.setItem("BlogVerse-userName", res.data?.userName);
+        localStorage.setItem("BlogVerse-userAvatar", res.data?.userAvatar);
         dispatch(login());
         toast.success("Registration successful");
 
@@ -48,7 +49,8 @@ const Register = () => {
       setName("");
       setEmail("");
       setPassword("");
-      setAvatar(null);
+      setAvatar(null); // Clear state
+      fileInputRef.current.value = ""; // Clear file input
     }
   };
 
@@ -97,6 +99,7 @@ const Register = () => {
           <input
             type="file"
             id="avatar"
+            ref={fileInputRef}
             accept="image/*"
             onChange={(e) => setAvatar(e.target.files[0])}
             className="reg-avatar-input"

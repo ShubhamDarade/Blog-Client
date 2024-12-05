@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./style.css"; // CSS for styling
 import toast from "react-hot-toast";
 import { createBlog } from "../../api";
@@ -9,6 +9,7 @@ const CreateBlog = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
+  const fileInputRef = useRef(null);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -37,6 +38,7 @@ const CreateBlog = () => {
       setTitle("");
       setDescription("");
       setImage(null);
+      fileInputRef.current.value = ""; // Clear file input
     }
   };
 
@@ -75,6 +77,7 @@ const CreateBlog = () => {
           <input
             type="file"
             id="img"
+            ref={fileInputRef}
             accept="image/*"
             onChange={(e) => setImage(e.target.files[0])}
             className="crte-blg-image-input"
