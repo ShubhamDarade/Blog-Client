@@ -3,8 +3,6 @@ import { Loading, Message } from "../../components";
 import { likedBlogs } from "../../api";
 import { useNavigate } from "react-router-dom";
 
-// Sample Data for Blogs and their Authors
-
 const LikedBlogs = () => {
   const navigate = useNavigate();
   const [blogs, setBlogs] = useState([]);
